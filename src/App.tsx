@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import PokemonCard from "./components/PokemonCard";
 
 function App() {
+  const [pokemonName, setPokemonName] = useState<string>("");
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPokemonName(e.target.value.toLowerCase());
+  };
+
+  const submitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    setIsSubmitted(!isSubmitted);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isSubmitted ? (
+        <div>
+          <form onSubmit={submitHandler}>
+            <button type="submit">Search Another Pokemon</button>
+          </form>
+          <PokemonCard
+            url="https://pokeapi.co/api/v2/pokemon"
+            name={pokemonName}
+          />
+        </div>
+      ) : (
+        <form onSubmit={submitHandler}>
+          <input type="text" onChange={searchHandler} />
+          <button type="submit">Search</button>
+        </form>
+      )}
     </div>
   );
 }
