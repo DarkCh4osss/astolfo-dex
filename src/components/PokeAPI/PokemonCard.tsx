@@ -4,6 +4,7 @@ import styled from "styled-components";
 import PokemonSprite from "./PokemonSprite";
 import PokemonSpecies from "./PokemonSpecies";
 import PokemonTypes from "./PokemonTypes";
+import PokemonEncounters from "./PokemonEncounters";
 
 interface Options {
   name: string;
@@ -32,6 +33,7 @@ const PokemonCard: React.FC<Options> = ({ name, url }) => {
         name={name}
       />
       <PokemonTypes url="https://pokeapi.co/api/v2/pokemon" name={name} />
+      <PokemonEncounters url="https://pokeapi.co/api/v2/pokemon" name={name} />
     </Card>
   );
 };

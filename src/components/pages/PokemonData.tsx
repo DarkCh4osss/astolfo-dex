@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PokemonCard from "../PokeAPI/PokemonCard";
+import astolfoimg from "../../img/astolfoimg.png";
 
 const PokemonData: React.FC = () => {
   const [pokemonName, setPokemonName] = useState<string>("");
@@ -16,7 +17,8 @@ const PokemonData: React.FC = () => {
   };
 
   return (
-    <div>
+    <Page>
+      <img className="astolfo" src={astolfoimg} alt="astolfo" />
       {isSubmitted ? (
         <PkmnData>
           <form onSubmit={submitHandler}>
@@ -33,9 +35,20 @@ const PokemonData: React.FC = () => {
           <button type="submit">Search</button>
         </Data>
       )}
-    </div>
+    </Page>
   );
 };
+
+const Page = styled.div`
+  /* background: #ffced6; */
+  min-height: 100vh;
+  .astolfo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(151.9em, 30rem);
+  }
+`;
 
 const Data = styled.form`
   min-height: 90vh;
