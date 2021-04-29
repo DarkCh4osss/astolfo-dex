@@ -16,7 +16,7 @@ const PokemonEvolution: React.FC<Options> = ({ url, hasEvolution }) => {
         console.log("PokemonEvolution Request", res);
         // if (hasEvolution) {
         setPokemonEv(
-          `${res.data.chain.species.name} evolves into ${res.data.chain.evolves_to[0].species.name} at level ${res.data.chain.evolves_to[0].evolution_details[0].min_level}`
+          `${res.data.chain.species.name} evolves into ${res.data.chain.evolves_to[0].species.name} at level ${res.data.chain.evolves_to[0].evolution_details[0].min_level} then to ${res.data.chain.evolves_to[0].evolves_to[0].species.name} at level ${res.data.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}`
         );
         // } else {
         //   setPokemonEv(`${res.data.chain.name} does not evolve`);

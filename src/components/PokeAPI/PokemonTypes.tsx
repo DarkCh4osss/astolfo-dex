@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
+import styled from "styled-components";
+import "./PokemonTypes.css";
 
 interface Options {
   name: string;
@@ -36,14 +38,26 @@ const PokemonTypes: React.FC<Options> = ({ name, url }) => {
   return (
     <div>
       {typesAmount! > 1 ? (
-        <p>
-          {pokemonFirstType} {pokemonSecondType}
-        </p>
+        <Types>
+          <p className={pokemonFirstType?.toString()}>{pokemonFirstType}</p>
+          <p className={pokemonSecondType?.toString()}>{pokemonSecondType}</p>
+        </Types>
       ) : (
-        <p>{pokemonFirstType}</p>
+        <p className={pokemonFirstType?.toString()}>{pokemonFirstType}</p>
       )}
     </div>
   );
 };
+
+const Types = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  p {
+    padding: 0rem 2rem;
+  }
+`;
 
 export default PokemonTypes;

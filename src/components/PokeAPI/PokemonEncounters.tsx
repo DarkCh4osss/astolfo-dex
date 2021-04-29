@@ -7,7 +7,7 @@ interface Options {
 }
 
 const PokemonEncounters: React.FC<Options> = ({ name, url }) => {
-  const [pokeLocation, setPokeLocation] = useState<object>();
+  const [pokeLocation, setPokeLocation] = useState<Object | Object[]>({});
 
   useEffect(() => {
     axios
@@ -19,10 +19,13 @@ const PokemonEncounters: React.FC<Options> = ({ name, url }) => {
       .catch((err) => console.log(err));
   }, [name, url]);
 
-  console.log(typeof pokeLocation);
-  // Object.entries(pokeLocation).map((key) => console.log(key));
-
-  return <div></div>;
+  return (
+    <div>
+      {Object.entries(pokeLocation).map((key) => (
+        <p>{key[1].location_area.name.replace(/-/g, " ")}</p>
+      ))}
+    </div>
+  );
 };
 
 export default PokemonEncounters;
